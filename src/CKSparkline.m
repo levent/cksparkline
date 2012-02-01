@@ -62,14 +62,12 @@
 	for (NSNumber *dataValue in newData) {
 		NSNumber *value = [[NSNumber alloc] initWithFloat:([dataValue floatValue] - min) / (max - min + 1.0)];
 		[mutableComputedData addObject:value];
-		[value release];
 	}
 	
-	[computedData release];	
 	computedData = mutableComputedData;
 
-	[data release];
-	data = [newData retain];
+
+	data = newData;
 	
 	[self setNeedsDisplay];
 }
@@ -102,12 +100,6 @@
 
 - (void)dealloc
 {
-	[data release];
-	[computedData release];	
-	[lineColor release];
-	[highlightedLineColor release];
-	
-    [super dealloc];
 }
 
 
